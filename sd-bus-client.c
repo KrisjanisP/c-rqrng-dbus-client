@@ -156,6 +156,12 @@ int main(int argc, char *argv[]) {
                     i + 1, strerror(-ret));
             goto cleanup;
         }
+
+        if (octets_len != num_bytes) {
+            fprintf(stderr, "Received %zu bytes, expected %u bytes\n", octets_len, num_bytes);
+            ret = -1;
+            goto cleanup;
+        }
         
         const uint8_t *octets = ptr;
         if (iterations == 1) {
