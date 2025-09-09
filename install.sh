@@ -3,7 +3,8 @@
 SCRIPT_DIR=$(dirname $(realpath $0))
 cd $SCRIPT_DIR
 
-./compile.sh
+mkdir -p bin
+gcc sd-bus-client.c -o bin/sd-bus-client $(pkg-config --cflags --libs libsystemd)
 
 sudo cp bin/sd-bus-client $HOME/.local/bin
 
